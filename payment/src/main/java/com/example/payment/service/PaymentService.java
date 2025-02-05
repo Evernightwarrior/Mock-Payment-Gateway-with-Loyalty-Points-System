@@ -7,6 +7,7 @@ import com.example.payment.repository.UserPointsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class PaymentService {
@@ -40,4 +41,8 @@ public class PaymentService {
     public int getPointsBalance(String userId) {
         return pointsRepo.findByUserId(userId).map(UserPoints::getPoints).orElse(0);
     }
+    public List<PaymentTransaction> getTransactionsForUser(String userId) {
+        return paymentRepo.findByUserId(userId);  // Custom query for userId
+    }
+    
 }
